@@ -8,7 +8,7 @@ import (
 )
 
 func server() {
-	ln, err := net.Listen("tcp", "192.168.4.1:8080")
+	ln, err := net.Listen("tcp", ":8080")
 	if err != nil {
 		panic(err)
 	}

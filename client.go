@@ -8,7 +8,7 @@ import (
 )
 
 func client() {
-	conn, err := net.Dial("tcp", "192.168.4.1:8080") // <-- IP du serveur
+	conn, err := net.Dial("tcp", ":8080") // <-- IP du serveur
 	if err != nil {
 		panic(err)
 	}
