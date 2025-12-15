@@ -7,19 +7,25 @@ import (
 	"os"
 )
 
-func client() {
-	conn, err := net.Dial("tcp", "10.36.0.35:8080") // <-- IP du serveur
+func server() {
+	ln, err := net.Listen("tcp", "10.36.0.35:8080")
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println("Connection établi !")
+	fmt.Println("en attente de connexion ")
 
-	// Réception
+	conn, err := ln.Accept()
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("Client connecté !")
+
+	// Goroutine réception
 	go func() {
 		reader := bufio.NewReader(conn)
 		for {
 			msg, _ := reader.ReadString('\n')
-			fmt.Print("Serveur: " + msg)
+			fmt.Print("Client: " + msg)
 		}
 	}()
 
